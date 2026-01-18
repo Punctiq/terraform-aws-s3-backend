@@ -4,7 +4,6 @@ Author: Alexandru Raul
 This module is intended for bootstrapping Terraform backends and is usually deployed once per environment.
 
 ---
-## English (EN)
 
 ### Overview
 This module bootstraps a Terraform remote backend by creating:
