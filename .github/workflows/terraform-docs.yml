@@ -2,8 +2,7 @@ name: Generate Terraform Docs
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
 
 permissions:
@@ -14,19 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install terraform-docs
+      - name: Generate terraform docs
         uses: terraform-docs/gh-actions@v1.3.0
         with:
-          version: latest
-
-      - name: Generate docs
-        run: terraform-docs .
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "docs(terraform): update terraform-docs"
-          file_pattern: README.md
+          working-dir: .
+          output-file: README.md
+          output-method: inject
+          git-push: true
+          git-commit-message: "docs(terraform): update terraform-docs"
