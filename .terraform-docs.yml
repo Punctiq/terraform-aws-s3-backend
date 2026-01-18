@@ -1,0 +1,22 @@
+formatter: markdown
+
+settings:
+  anchor: true
+  escape: false
+  indent: 2
+
+output:
+  file: README.md
+  mode: inject
+
+sections:
+  show:
+    - requirements
+    - providers
+    - inputs
+    - outputs
+    - resources
+
+sort:
+  enabled: true
+  by: name
