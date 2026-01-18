@@ -15,4 +15,3 @@
 .vscode/
 .idea/
 .DS_Store
-variables.tf
