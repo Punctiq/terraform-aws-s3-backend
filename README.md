@@ -128,7 +128,6 @@ This module expects standardized tags. Values should be lowercase where validati
 | <a name="input_s3_bucket_name"></a> [s3_bucket_name](#input_s3_bucket_name) | Bucket name | `string` | n/a | yes |
 | <a name="input_s3_bucket_versioning"></a> [s3_bucket_versioning](#input_s3_bucket_versioning) | Choose if you want to have bucket versioning. | `string` | `"Enabled"` | no |
 | <a name="input_s3_server_side_encryption"></a> [s3_server_side_encryption](#input_s3_server_side_encryption) | S3 server side encryption | `string` | `"AES256"` | no |
-| <a name="input_s3_standard_bucket_name"></a> [s3_standard_bucket_name](#input_s3_standard_bucket_name) | Standard bucket name | `string` | `"tfstate-prod"` | no |
 | <a name="input_security_dynamotbl_tags"></a> [security_dynamotbl_tags](#input_security_dynamotbl_tags) | DynamoDB tables security TAGS | `map(string)` | n/a | yes |
 | <a name="input_security_s3_tags"></a> [security_s3_tags](#input_security_s3_tags) | S3 security TAGS | `map(string)` | n/a | yes |
 | <a name="input_technical_dynamodbtbl_tags"></a> [technical_dynamodbtbl_tags](#input_technical_dynamodbtbl_tags) | DynamoDb table technical TAGS | `map(string)` | n/a | yes |
