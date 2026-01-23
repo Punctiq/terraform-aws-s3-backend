@@ -20,6 +20,7 @@ resource "aws_s3_bucket" "terraform_state_bucket" {
     var.security_s3_tags,  # Security TAGS
     var.billing_tags,      # Billing TAGS
     var.backup_s3_tags,    # Backup S3 TAGS
+    local.deployment_tags, # Deployment TAGS
     #Individual tags
     {
       "Name"                     = "punctiq-${var.s3_bucket_name}-${var.region}"
