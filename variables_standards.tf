@@ -7,16 +7,16 @@
 # Standards
 ########################
 
-variable "s3_standard_bucket_name" {
-  type        = string
-  description = "Standard bucket name"
-  default     = "tfstate-prod"
+#variable "s3_standard_bucket_name" {
+#  type        = string
+#  description = "Standard bucket name"
+#  default     = "tfstate-prod"
 
-  validation {
-    condition     = var.s3_standard_bucket_name == "tfstate-prod"
-    error_message = "The variable 's3_standard_bucket_name' must be one of the following: tfstate-prod"
-  }
-}
+#  validation {
+#    condition     = var.s3_standard_bucket_name == "tfstate-prod"
+#    error_message = "The variable 's3_standard_bucket_name' must be one of the following: tfstate-prod"
+#  }
+#}
 
 variable "region" {
   type        = string

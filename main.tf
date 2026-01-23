@@ -5,7 +5,7 @@
 
 #Create the S3 bucket for Terraform TF state file
 resource "aws_s3_bucket" "terraform_state_bucket" {
-  bucket = "punctiq-${var.s3_standard_bucket_name}-${var.s3_bucket_name}-${var.region}"
+  bucket = "punctiq-${var.s3_bucket_name}-${var.region}"
 
   #Prevent bucket deletion
   lifecycle {
@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "terraform_state_bucket" {
     var.backup_s3_tags,    # Backup S3 TAGS
     #Individual tags
     {
-      "Name"                     = "punctiq-${var.s3_standard_bucket_name}-${var.s3_bucket_name}-${var.region}"
+      "Name"                     = "punctiq-${var.s3_bucket_name}-${var.region}"
       "CreationDate"             = formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp())
       "Terraform_Module_Version" = var.terraform_module_version
     }
@@ -83,7 +83,7 @@ resource "aws_dynamodb_table" "terraform_tfstate_lock" {
     var.billing_tags,               # Billing TAGS
     #Individual tags
     {
-      "Name"                     = "punctiq-${var.s3_standard_bucket_name}-${var.s3_bucket_name}-${var.region}-dynamodb-tfstate-lock"
+      "Name"                     = "punctiq-${var.s3_bucket_name}-${var.region}-dynamodb-tfstate-lock"
       "CreationDate"             = formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp())
       "Terraform_Module_Version" = var.terraform_module_version
     }
