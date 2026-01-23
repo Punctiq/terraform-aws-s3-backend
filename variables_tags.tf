@@ -415,8 +415,8 @@ variable "backup_s3_tags" {
 #
 # Provides static deployment tags for AWS resources.
 # Expected keys include:
-#   - atos:deployment:type
-#   - atos:deployment:change_request
+#   - punctiq:deployment:type
+#   - punctiq:deployment:change_request
 #
 # NOTE:
 #   Any modifications to this variable must be approved via an internal Jira ticket.

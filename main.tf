@@ -3,6 +3,7 @@
 # Description: This module creates an S3 bucket and DynamoDB table for Terraform backend state management
 
 
+
 #Create the S3 bucket for Terraform TF state file
 resource "aws_s3_bucket" "terraform_state_bucket" {
   bucket = "punctiq-${var.s3_bucket_name}-${var.region}"
@@ -21,6 +22,7 @@ resource "aws_s3_bucket" "terraform_state_bucket" {
     var.billing_tags,      # Billing TAGS
     var.backup_s3_tags,    # Backup S3 TAGS
     local.deployment_tags, # Deployment TAGS
+      
     #Individual tags
     {
       "Name"                     = "punctiq-${var.s3_bucket_name}-${var.region}"

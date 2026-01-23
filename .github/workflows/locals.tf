@@ -17,10 +17,10 @@ locals {
   # ------------------------------------------------------------------
  deployment_tags = merge(
     var.deployment_tags_static,
-    { "atos:deployment:deployment_id"   = var.tag_build_number,
-      "atos:deployment:deployed_by"     = var.tag_build_author,
-      "atos:deployment:git_hash"        = var.tag_build_hash,
-      "atos:deployment:build_job_name"  = var.tag_build_job_name
+    { "punctiq:deployment:deployment_id"   = var.tag_build_number,
+      "punctiq:deployment:deployed_by"     = var.tag_build_author,
+      "punctiq:deployment:git_hash"        = var.tag_build_hash,
+      "punctiq:deployment:build_job_name"  = var.tag_build_job_name
      }
   )
 
