@@ -82,6 +82,7 @@ resource "aws_dynamodb_table" "terraform_tfstate_lock" {
     var.technical_dynamodbtbl_tags, # Technical TAGS
     var.security_dynamotbl_tags,    # Security TAGS
     var.billing_tags,               # Billing TAGS
+    local.deployment_tags,          # Deployment TAGS
     #Individual tags
     {
       "Name"                     = "punctiq-${var.s3_bucket_name}-${var.region}-dynamodb-tfstate-lock"
