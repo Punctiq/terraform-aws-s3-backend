@@ -408,3 +408,95 @@ variable "backup_s3_tags" {
     error_message = "The 'punctiq:backup:data_classification' tag is required and must be all-lowercase."
   }
 }
+
+
+# ------------------------------------------------------------------
+# Variable: deployment_tags_static
+#
+# Provides static deployment tags for AWS resources.
+# Expected keys include:
+#   - atos:deployment:type
+#   - atos:deployment:change_request
+#
+# NOTE:
+#   Any modifications to this variable must be approved via an internal Jira ticket.
+# ------------------------------------------------------------------
+variable "deployment_tags_static" {
+   description = "AWS deployment TAGS"
+  type    = map(string)
+ validation {
+    condition = (
+      length(keys(var.deployment_tags_static)) == 2 &&
+      can(var.deployment_tags_static["punctiq:deployment:type"]) &&
+      try(var.deployment_tags_static["punctiq:deployment:type"] == lower(var.deployment_tags_static["punctiq:deployment:type"]), false)
+    )
+    error_message = "The 'punctiq:deployment:type' tag is required and must be all-lowercase."
+  }
+
+  validation {
+    condition = (
+      length(keys(var.deployment_tags_static)) == 2 &&
+      can(var.deployment_tags_static["punctiq:deployment:change_request"]) &&
+      try(var.deployment_tags_static["punctiq:deployment:change_request"] == lower(var.deployment_tags_static["punctiq:deployment:change_request"]), false)
+    )
+    error_message = "The 'punctiq:deployment:change_request' tag is required and must be all-lowercase."
+  }
+   
+}
+
+# ------------------------------------------------------------------
+# Variable: tag_build_number
+#
+# Provides the build number from Jenkins.
+#
+# NOTE:
+#   Any modifications to this variable must be approved via an internal Jira ticket.
+# ------------------------------------------------------------------
+variable "tag_build_number" {
+  description = "Build number, taken from  Jenkins"
+  type        = string
+  default     = ""
+}
+
+# ------------------------------------------------------------------
+# Variable: tag_build_author
+#
+# Provides the deployment author from Jenkins.
+#
+# NOTE:
+#   Any modifications to this variable must be approved via an internal Jira ticket.
+# ------------------------------------------------------------------
+variable "tag_build_author" {
+  description = "Deployment author, taken from  Jenkins"
+  type        = string
+  default     = ""
+}
+
+# ------------------------------------------------------------------
+# Variable: tag_build_hash
+#
+# Provides the Git hash from Jenkins for version traceability.
+#
+# NOTE:
+#   Any modifications to this variable must be approved via an internal Jira ticket.
+# ------------------------------------------------------------------
+variable "tag_build_hash" {
+  description = "GIT hash, taken from  Jenkins"
+  type        = string
+  default     = ""
+}
+
+# ------------------------------------------------------------------
+# Variable: tag_build_job_name
+#
+# Provides the Jenkins job name for the deployment.
+#
+# NOTE:
+#   Any modifications to this variable must be approved via an internal Jira ticket.
+# ------------------------------------------------------------------
+variable "tag_build_job_name" {
+  description = "Job name, taken from  Jenkins"
+  type        = string
+  default     = ""
+}
+#End Deployment TAGS
