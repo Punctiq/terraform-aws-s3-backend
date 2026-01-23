@@ -122,7 +122,6 @@ This module expects standardized tags. Values should be lowercase where validati
 | <a name="input_dynamo_tbl_hash_key"></a> [dynamo_tbl_hash_key](#input_dynamo_tbl_hash_key) | Attribute to use as the hash (partition) key | `string` | `"LockID"` | no |
 | <a name="input_dynamo_tbl_name"></a> [dynamo_tbl_name](#input_dynamo_tbl_name) | DynamoDB table name | `string` | n/a | yes |
 | <a name="input_dynamo_tbl_point_in_time_recovery"></a> [dynamo_tbl_point_in_time_recovery](#input_dynamo_tbl_point_in_time_recovery) | DynamoDB point in time recovery | `string` | `true` | no |
-| <a name="input_profile"></a> [profile](#input_profile) | What AWS profile to use | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input_region) | Region | `string` | n/a | yes |
 | <a name="input_s3_block_public_acls"></a> [s3_block_public_acls](#input_s3_block_public_acls) | Whether to block public ACLs | `string` | `true` | no |
 | <a name="input_s3_block_public_policy"></a> [s3_block_public_policy](#input_s3_block_public_policy) | Whether to block public policies | `string` | `true` | no |
