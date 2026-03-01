@@ -28,17 +28,13 @@ variable "region" {
   }
 }
 
-#variable "profile" {
-#  type        = string#
- # description = "What AWS profile to use"
-
- # validation {
- #   condition     = var.profile == "punctiq-dev" || var.profile == "punctiq-finops" || var.profile == "punctiq-prod"
- #   error_message = "The variable 'aws_profile' must be one of the following: punctiq-dev, punctiq-finops, punctiq-prod"
- # }
-#}
-
 variable "terraform_module_version" {
   type        = string
   description = "Terraform module used to deploy resource"
+}
+
+variable "extra_tags" {
+  description = "Tag-uri suplimentare / override"
+  type        = map(string)
+  default     = {}
 }

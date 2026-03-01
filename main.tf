@@ -14,23 +14,7 @@ resource "aws_s3_bucket" "terraform_state_bucket" {
   }
   #End
 
-  #Tag resources
-  tags = merge(
-    var.business_tags,     # Business TAGS
-    var.technical_s3_tags, # Technical TAGS
-    var.security_s3_tags,  # Security TAGS
-    var.billing_tags,      # Billing TAGS
-    var.backup_s3_tags,    # Backup S3 TAGS
-    local.deployment_tags, # Deployment TAGS
-      
-    #Individual tags
-    {
-      "Name"                     = "punctiq-${var.s3_bucket_name}-${var.region}"
-      "CreationDate"             = formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp())
-      "Terraform_Module_Version" = var.terraform_module_version
-    }
-    #End Individual tags
-  )
+ tags = local.s3_bucket_tags
   #End Backup Tags
   #End Create the S3 bucket for Terraform TF state file
 }
@@ -78,21 +62,7 @@ resource "aws_dynamodb_table" "terraform_tfstate_lock" {
     enabled = var.dynamo_tbl_point_in_time_recovery
   }
 
-  #Tag resources
-  tags = merge(
-    var.business_tags,              #  Business TAGS
-    var.technical_dynamodbtbl_tags, # Technical TAGS
-    var.security_dynamotbl_tags,    # Security TAGS
-    var.billing_tags,               # Billing TAGS
-    local.deployment_tags,          # Deployment TAGS
-    #Individual tags
-    {
-      "Name"                     = "punctiq-${var.s3_bucket_name}-${var.region}-dynamodb-tfstate-lock"
-      "CreationDate"             = formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp())
-      "Terraform_Module_Version" = var.terraform_module_version
-    }
-    #End Individual tags
-  )
+  tags = local.dynamodb_tags
   #End Backup Tags
 
 }
