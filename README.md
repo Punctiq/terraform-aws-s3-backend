@@ -115,6 +115,7 @@ This module expects standardized tags. Values should be lowercase where validati
 |------|-------------|------|---------|:--------:|
 | <a name="input_business_cost_tags"></a> [business_cost_tags](#input_business_cost_tags) | Business / cost allocation tags | `map(string)` | `{}` | no |
 | <a name="input_client_tags"></a> [client_tags](#input_client_tags) | Client/context tags | `map(string)` | `{}` | no |
+| <a name="input_deployment_tags_static"></a> [deployment_tags_static](#input_deployment_tags_static) | AWS deployment static tags | `map(string)` | n/a | yes |
 | <a name="input_dynamo_tbl_attribute_type"></a> [dynamo_tbl_attribute_type](#input_dynamo_tbl_attribute_type) | DynamoDB table attribute type | `string` | `"S"` | no |
 | <a name="input_dynamo_tbl_billing_mode"></a> [dynamo_tbl_billing_mode](#input_dynamo_tbl_billing_mode) | DynamoDB billing mode | `string` | `"PAY_PER_REQUEST"` | no |
 | <a name="input_dynamo_tbl_hash_key"></a> [dynamo_tbl_hash_key](#input_dynamo_tbl_hash_key) | Attribute to use as the hash (partition) key | `string` | `"LockID"` | no |
@@ -127,6 +128,10 @@ This module expects standardized tags. Values should be lowercase where validati
 | <a name="input_s3_bucket_name"></a> [s3_bucket_name](#input_s3_bucket_name) | Bucket name | `string` | n/a | yes |
 | <a name="input_s3_bucket_versioning"></a> [s3_bucket_versioning](#input_s3_bucket_versioning) | Choose if you want to have bucket versioning. | `string` | `"Enabled"` | no |
 | <a name="input_s3_server_side_encryption"></a> [s3_server_side_encryption](#input_s3_server_side_encryption) | S3 server side encryption | `string` | `"AES256"` | no |
+| <a name="input_tag_build_author"></a> [tag_build_author](#input_tag_build_author) | Deployment author, taken from Jenkins | `string` | `""` | no |
+| <a name="input_tag_build_hash"></a> [tag_build_hash](#input_tag_build_hash) | GIT hash, taken from Jenkins | `string` | `""` | no |
+| <a name="input_tag_build_job_name"></a> [tag_build_job_name](#input_tag_build_job_name) | Job name, taken from Jenkins | `string` | `""` | no |
+| <a name="input_tag_build_number"></a> [tag_build_number](#input_tag_build_number) | Build number, taken from Jenkins | `string` | `""` | no |
 | <a name="input_terraform_module_version"></a> [terraform_module_version](#input_terraform_module_version) | Terraform module used to deploy resource | `string` | n/a | yes |
 
 ## Outputs
