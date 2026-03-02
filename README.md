@@ -113,12 +113,14 @@ This module expects standardized tags. Values should be lowercase where validati
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_business_cost_tags"></a> [business_cost_tags](#input_business_cost_tags) | Business / cost allocation tags | `map(string)` | `{}` | no |
+| <a name="input_client_tags"></a> [client_tags](#input_client_tags) | Client/context tags | `map(string)` | `{}` | no |
 | <a name="input_dynamo_tbl_attribute_type"></a> [dynamo_tbl_attribute_type](#input_dynamo_tbl_attribute_type) | DynamoDB table attribute type | `string` | `"S"` | no |
 | <a name="input_dynamo_tbl_billing_mode"></a> [dynamo_tbl_billing_mode](#input_dynamo_tbl_billing_mode) | DynamoDB billing mode | `string` | `"PAY_PER_REQUEST"` | no |
 | <a name="input_dynamo_tbl_hash_key"></a> [dynamo_tbl_hash_key](#input_dynamo_tbl_hash_key) | Attribute to use as the hash (partition) key | `string` | `"LockID"` | no |
 | <a name="input_dynamo_tbl_name"></a> [dynamo_tbl_name](#input_dynamo_tbl_name) | DynamoDB table name | `string` | n/a | yes |
 | <a name="input_dynamo_tbl_point_in_time_recovery"></a> [dynamo_tbl_point_in_time_recovery](#input_dynamo_tbl_point_in_time_recovery) | DynamoDB point in time recovery | `string` | `true` | no |
-| <a name="input_extra_tags"></a> [extra_tags](#input_extra_tags) | Tag-uri suplimentare / override | `map(string)` | `{}` | no |
+| <a name="input_extra_tags"></a> [extra_tags](#input_extra_tags) | Extra tags merged last | `map(string)` | `{}` | no |
 | <a name="input_region"></a> [region](#input_region) | Region | `string` | n/a | yes |
 | <a name="input_s3_block_public_acls"></a> [s3_block_public_acls](#input_s3_block_public_acls) | Whether to block public ACLs | `string` | `true` | no |
 | <a name="input_s3_block_public_policy"></a> [s3_block_public_policy](#input_s3_block_public_policy) | Whether to block public policies | `string` | `true` | no |
