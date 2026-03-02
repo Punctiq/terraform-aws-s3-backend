@@ -33,8 +33,3 @@ variable "terraform_module_version" {
   description = "Terraform module used to deploy resource"
 }
 
-variable "extra_tags" {
-  description = "Tag-uri suplimentare / override"
-  type        = map(string)
-  default     = {}
-}
