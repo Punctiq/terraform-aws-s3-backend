@@ -98,6 +98,7 @@ This module expects standardized tags. Values should be lowercase where validati
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.0.0 |
+| <a name="provider_time"></a> [time](#provider\_time) | n/a |
 
 ## Modules
 
@@ -107,11 +108,12 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_dynamodb_table.terraform_tfstate_lock](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table) | resource |
-| [aws_s3_bucket.terraform_state_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
-| [aws_s3_bucket_public_access_block.terraform_state_bucket_disable_public_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
-| [aws_s3_bucket_server_side_encryption_configuration.terraform_tfstate_bucket_encryption](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
-| [aws_s3_bucket_versioning.terraform_state_bucket_versioning](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) | resource |
+| [aws_s3_bucket.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+| [aws_s3_bucket_ownership_controls.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_ownership_controls) | resource |
+| [aws_s3_bucket_public_access_block.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
+| [aws_s3_bucket_server_side_encryption_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
+| [aws_s3_bucket_versioning.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) | resource |
+| [time_static.creation](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/static) | resource |
 
 ## Inputs
 
@@ -126,6 +128,8 @@ No modules.
 | <a name="input_dynamo_tbl_name"></a> [dynamo\_tbl\_name](#input\_dynamo\_tbl\_name) | DynamoDB table name | `string` | n/a | yes |
 | <a name="input_dynamo_tbl_point_in_time_recovery"></a> [dynamo\_tbl\_point\_in\_time\_recovery](#input\_dynamo\_tbl\_point\_in\_time\_recovery) | DynamoDB point in time recovery | `string` | `true` | no |
 | <a name="input_extra_tags"></a> [extra\_tags](#input\_extra\_tags) | Extra tags merged last | `map(string)` | `{}` | no |
+| <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS key ARN if using aws:kms | `string` | `null` | no |
+| <a name="input_prevent_destroy"></a> [prevent\_destroy](#input\_prevent\_destroy) | Prevent accidental destruction of bucket and table | `bool` | `true` | no |
 | <a name="input_region"></a> [region](#input\_region) | Region | `string` | n/a | yes |
 | <a name="input_s3_block_public_acls"></a> [s3\_block\_public\_acls](#input\_s3\_block\_public\_acls) | Whether to block public ACLs | `string` | `true` | no |
 | <a name="input_s3_block_public_policy"></a> [s3\_block\_public\_policy](#input\_s3\_block\_public\_policy) | Whether to block public policies | `string` | `true` | no |
@@ -142,8 +146,9 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_terraform_state_bucket_arn"></a> [terraform\_state\_bucket\_arn](#output\_terraform\_state\_bucket\_arn) | ARN of the S3 bucket used for Terraform state |
-| <a name="output_terraform_state_bucket_name"></a> [terraform\_state\_bucket\_name](#output\_terraform\_state\_bucket\_name) | Terraform TF state S3 bucket name |
-| <a name="output_terraform_tfstate_lock_table_arn"></a> [terraform\_tfstate\_lock\_table\_arn](#output\_terraform\_tfstate\_lock\_table\_arn) | DynamoDB table ARN used for Terraform state locking |
-| <a name="output_terraform_tfstate_lock_table_name"></a> [terraform\_tfstate\_lock\_table\_name](#output\_terraform\_tfstate\_lock\_table\_name) | DynamoDB table name used for Terraform state locking |
+| <a name="output_backend_config_example"></a> [backend\_config\_example](#output\_backend\_config\_example) | Example backend configuration block |
+| <a name="output_dynamodb_table_arn"></a> [dynamodb\_table\_arn](#output\_dynamodb\_table\_arn) | ARN of the DynamoDB lock table |
+| <a name="output_dynamodb_table_name"></a> [dynamodb\_table\_name](#output\_dynamodb\_table\_name) | Name of the DynamoDB lock table |
+| <a name="output_s3_bucket_arn"></a> [s3\_bucket\_arn](#output\_s3\_bucket\_arn) | ARN of the S3 bucket |
+| <a name="output_s3_bucket_name"></a> [s3\_bucket\_name](#output\_s3\_bucket\_name) | Name of the S3 bucket for Terraform state |
 <!-- END_TF_DOCS -->
