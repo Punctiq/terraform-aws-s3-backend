@@ -89,15 +89,19 @@ This module expects standardized tags. Values should be lowercase where validati
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | ~> 1.14.0 |
-| <a name="requirement_aws"></a> [aws](#requirement_aws) | >= 3.0.0 |
-| <a name="requirement_github"></a> [github](#requirement_github) | ~> 5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.14.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.0.0 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | ~> 5.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider_aws) | >= 3.0.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.0.0 |
+
+## Modules
+
+No modules.
 
 ## Resources
 
@@ -113,33 +117,33 @@ This module expects standardized tags. Values should be lowercase where validati
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_business_cost_tags"></a> [business_cost_tags](#input_business_cost_tags) | Business / cost allocation tags | `map(string)` | `{}` | no |
-| <a name="input_client_tags"></a> [client_tags](#input_client_tags) | Client/context tags | `map(string)` | `{}` | no |
-| <a name="input_deployment_tags_static"></a> [deployment_tags_static](#input_deployment_tags_static) | AWS deployment static tags | `map(string)` | n/a | yes |
-| <a name="input_dynamo_tbl_attribute_type"></a> [dynamo_tbl_attribute_type](#input_dynamo_tbl_attribute_type) | DynamoDB table attribute type | `string` | `"S"` | no |
-| <a name="input_dynamo_tbl_billing_mode"></a> [dynamo_tbl_billing_mode](#input_dynamo_tbl_billing_mode) | DynamoDB billing mode | `string` | `"PAY_PER_REQUEST"` | no |
-| <a name="input_dynamo_tbl_hash_key"></a> [dynamo_tbl_hash_key](#input_dynamo_tbl_hash_key) | Attribute to use as the hash (partition) key | `string` | `"LockID"` | no |
-| <a name="input_dynamo_tbl_name"></a> [dynamo_tbl_name](#input_dynamo_tbl_name) | DynamoDB table name | `string` | n/a | yes |
-| <a name="input_dynamo_tbl_point_in_time_recovery"></a> [dynamo_tbl_point_in_time_recovery](#input_dynamo_tbl_point_in_time_recovery) | DynamoDB point in time recovery | `string` | `true` | no |
-| <a name="input_extra_tags"></a> [extra_tags](#input_extra_tags) | Extra tags merged last | `map(string)` | `{}` | no |
-| <a name="input_region"></a> [region](#input_region) | Region | `string` | n/a | yes |
-| <a name="input_s3_block_public_acls"></a> [s3_block_public_acls](#input_s3_block_public_acls) | Whether to block public ACLs | `string` | `true` | no |
-| <a name="input_s3_block_public_policy"></a> [s3_block_public_policy](#input_s3_block_public_policy) | Whether to block public policies | `string` | `true` | no |
-| <a name="input_s3_bucket_name"></a> [s3_bucket_name](#input_s3_bucket_name) | Bucket name | `string` | n/a | yes |
-| <a name="input_s3_bucket_versioning"></a> [s3_bucket_versioning](#input_s3_bucket_versioning) | Choose if you want to have bucket versioning. | `string` | `"Enabled"` | no |
-| <a name="input_s3_server_side_encryption"></a> [s3_server_side_encryption](#input_s3_server_side_encryption) | S3 server side encryption | `string` | `"AES256"` | no |
-| <a name="input_tag_build_author"></a> [tag_build_author](#input_tag_build_author) | Deployment author, taken from Jenkins | `string` | `""` | no |
-| <a name="input_tag_build_hash"></a> [tag_build_hash](#input_tag_build_hash) | GIT hash, taken from Jenkins | `string` | `""` | no |
-| <a name="input_tag_build_job_name"></a> [tag_build_job_name](#input_tag_build_job_name) | Job name, taken from Jenkins | `string` | `""` | no |
-| <a name="input_tag_build_number"></a> [tag_build_number](#input_tag_build_number) | Build number, taken from Jenkins | `string` | `""` | no |
-| <a name="input_terraform_module_version"></a> [terraform_module_version](#input_terraform_module_version) | Terraform module used to deploy resource | `string` | n/a | yes |
+| <a name="input_business_cost_tags"></a> [business\_cost\_tags](#input\_business\_cost\_tags) | Business / cost allocation tags | `map(string)` | `{}` | no |
+| <a name="input_client_tags"></a> [client\_tags](#input\_client\_tags) | Client/context tags | `map(string)` | `{}` | no |
+| <a name="input_deployment_tags_static"></a> [deployment\_tags\_static](#input\_deployment\_tags\_static) | AWS deployment static tags | `map(string)` | n/a | yes |
+| <a name="input_dynamo_tbl_attribute_type"></a> [dynamo\_tbl\_attribute\_type](#input\_dynamo\_tbl\_attribute\_type) | DynamoDB table attribute type | `string` | `"S"` | no |
+| <a name="input_dynamo_tbl_billing_mode"></a> [dynamo\_tbl\_billing\_mode](#input\_dynamo\_tbl\_billing\_mode) | DynamoDB billing mode | `string` | `"PAY_PER_REQUEST"` | no |
+| <a name="input_dynamo_tbl_hash_key"></a> [dynamo\_tbl\_hash\_key](#input\_dynamo\_tbl\_hash\_key) | Attribute to use as the hash (partition) key | `string` | `"LockID"` | no |
+| <a name="input_dynamo_tbl_name"></a> [dynamo\_tbl\_name](#input\_dynamo\_tbl\_name) | DynamoDB table name | `string` | n/a | yes |
+| <a name="input_dynamo_tbl_point_in_time_recovery"></a> [dynamo\_tbl\_point\_in\_time\_recovery](#input\_dynamo\_tbl\_point\_in\_time\_recovery) | DynamoDB point in time recovery | `string` | `true` | no |
+| <a name="input_extra_tags"></a> [extra\_tags](#input\_extra\_tags) | Extra tags merged last | `map(string)` | `{}` | no |
+| <a name="input_region"></a> [region](#input\_region) | Region | `string` | n/a | yes |
+| <a name="input_s3_block_public_acls"></a> [s3\_block\_public\_acls](#input\_s3\_block\_public\_acls) | Whether to block public ACLs | `string` | `true` | no |
+| <a name="input_s3_block_public_policy"></a> [s3\_block\_public\_policy](#input\_s3\_block\_public\_policy) | Whether to block public policies | `string` | `true` | no |
+| <a name="input_s3_bucket_name"></a> [s3\_bucket\_name](#input\_s3\_bucket\_name) | Bucket name | `string` | n/a | yes |
+| <a name="input_s3_bucket_versioning"></a> [s3\_bucket\_versioning](#input\_s3\_bucket\_versioning) | Choose if you want to have bucket versioning. | `string` | `"Enabled"` | no |
+| <a name="input_s3_server_side_encryption"></a> [s3\_server\_side\_encryption](#input\_s3\_server\_side\_encryption) | S3 server side encryption | `string` | `"AES256"` | no |
+| <a name="input_tag_build_author"></a> [tag\_build\_author](#input\_tag\_build\_author) | Deployment author, taken from Jenkins | `string` | `""` | no |
+| <a name="input_tag_build_hash"></a> [tag\_build\_hash](#input\_tag\_build\_hash) | GIT hash, taken from Jenkins | `string` | `""` | no |
+| <a name="input_tag_build_job_name"></a> [tag\_build\_job\_name](#input\_tag\_build\_job\_name) | Job name, taken from Jenkins | `string` | `""` | no |
+| <a name="input_tag_build_number"></a> [tag\_build\_number](#input\_tag\_build\_number) | Build number, taken from Jenkins | `string` | `""` | no |
+| <a name="input_terraform_module_version"></a> [terraform\_module\_version](#input\_terraform\_module\_version) | Terraform module used to deploy resource | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_terraform_state_bucket_arn"></a> [terraform_state_bucket_arn](#output_terraform_state_bucket_arn) | ARN of the S3 bucket used for Terraform state |
-| <a name="output_terraform_state_bucket_name"></a> [terraform_state_bucket_name](#output_terraform_state_bucket_name) | Terraform TF state S3 bucket name |
-| <a name="output_terraform_tfstate_lock_table_arn"></a> [terraform_tfstate_lock_table_arn](#output_terraform_tfstate_lock_table_arn) | DynamoDB table ARN used for Terraform state locking |
-| <a name="output_terraform_tfstate_lock_table_name"></a> [terraform_tfstate_lock_table_name](#output_terraform_tfstate_lock_table_name) | DynamoDB table name used for Terraform state locking |
+| <a name="output_terraform_state_bucket_arn"></a> [terraform\_state\_bucket\_arn](#output\_terraform\_state\_bucket\_arn) | ARN of the S3 bucket used for Terraform state |
+| <a name="output_terraform_state_bucket_name"></a> [terraform\_state\_bucket\_name](#output\_terraform\_state\_bucket\_name) | Terraform TF state S3 bucket name |
+| <a name="output_terraform_tfstate_lock_table_arn"></a> [terraform\_tfstate\_lock\_table\_arn](#output\_terraform\_tfstate\_lock\_table\_arn) | DynamoDB table ARN used for Terraform state locking |
+| <a name="output_terraform_tfstate_lock_table_name"></a> [terraform\_tfstate\_lock\_table\_name](#output\_terraform\_tfstate\_lock\_table\_name) | DynamoDB table name used for Terraform state locking |
 <!-- END_TF_DOCS -->
