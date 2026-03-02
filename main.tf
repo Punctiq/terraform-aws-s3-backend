@@ -16,7 +16,7 @@ resource "aws_s3_bucket" "this" {
   tags = local.s3_bucket_tags
 
   lifecycle {
-    prevent_destroy = var.prevent_destroy  # default true in variables.tf
+    prevent_destroy = false # Allow bucket destruction for testing; set to true in production
     ignore_changes  = [tags["punctiq:lastupdated"]]
   }
 }
@@ -60,4 +60,30 @@ resource "aws_s3_bucket_versioning" "this" {
     aws_s3_bucket_public_access_block.this,
     aws_s3_bucket_server_side_encryption_configuration.this
   ]
+}
+
+# ────────────────────────────────────────────────────────────────
+# DynamoDB Table – State Locking
+# ────────────────────────────────────────────────────────────────
+resource "aws_dynamodb_table" "this" {
+  name         = coalesce(var.dynamo_tbl_name, "punctiq-tfstate-lock-${var.region}")
+  billing_mode = var.dynamo_tbl_billing_mode
+  hash_key     = var.dynamo_tbl_hash_key
+
+  attribute {
+    name = var.dynamo_tbl_hash_key
+    type = "S"   # LockID este de obicei string
+  }
+
+  point_in_time_recovery {
+    enabled = var.dynamo_tbl_point_in_time_recovery
+  }
+
+  tags = local.dynamodb_tags
+
+  lifecycle {
+    # La fel ca la S3: false pentru testare, true în producție
+    prevent_destroy = false
+    ignore_changes  = [tags["punctiq:lastupdated"]]
+  }
 }
