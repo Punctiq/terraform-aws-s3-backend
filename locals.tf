@@ -42,13 +42,6 @@ locals {
   # Common Tags – se aplică pe S3 bucket și DynamoDB table
   # ────────────────────────────────────────────────────────────────
   common_tags = merge(
-    # Sistem vechi – poți comenta aceste linii după migrație completă
-    var.business_tags,
-    var.technical_s3_tags,
-    var.security_s3_tags,
-    var.billing_tags,
-    var.backup_s3_tags,
-
     # Sistem nou light
     local.business_cost_tags,
     local.client_context_tags,
