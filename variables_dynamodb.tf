@@ -50,7 +50,7 @@ variable "dynamo_tbl_billing_mode" {
 }
 
 variable "dynamo_tbl_point_in_time_recovery" {
-  type        = string
+  type        = bool
   description = "DynamoDB point in time recovery"
   default     = true
 
