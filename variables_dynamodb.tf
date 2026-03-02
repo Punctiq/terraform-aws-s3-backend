@@ -10,7 +10,6 @@
 variable "dynamo_tbl_name" {
   type        = string
   description = "DynamoDB table name"
-
   validation {
     condition     = length(var.dynamo_tbl_name) <= 30
     error_message = "The total length must not exceed 20 characters."
