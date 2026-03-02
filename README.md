@@ -127,7 +127,7 @@ No modules.
 | <a name="input_dynamo_tbl_billing_mode"></a> [dynamo\_tbl\_billing\_mode](#input\_dynamo\_tbl\_billing\_mode) | DynamoDB billing mode | `string` | `"PAY_PER_REQUEST"` | no |
 | <a name="input_dynamo_tbl_hash_key"></a> [dynamo\_tbl\_hash\_key](#input\_dynamo\_tbl\_hash\_key) | Attribute to use as the hash (partition) key | `string` | `"LockID"` | no |
 | <a name="input_dynamo_tbl_name"></a> [dynamo\_tbl\_name](#input\_dynamo\_tbl\_name) | DynamoDB table name | `string` | n/a | yes |
-| <a name="input_dynamo_tbl_point_in_time_recovery"></a> [dynamo\_tbl\_point\_in\_time\_recovery](#input\_dynamo\_tbl\_point\_in\_time\_recovery) | DynamoDB point in time recovery | `string` | `true` | no |
+| <a name="input_dynamo_tbl_point_in_time_recovery"></a> [dynamo\_tbl\_point\_in\_time\_recovery](#input\_dynamo\_tbl\_point\_in\_time\_recovery) | DynamoDB point in time recovery | `bool` | `true` | no |
 | <a name="input_extra_tags"></a> [extra\_tags](#input\_extra\_tags) | Extra tags merged last | `map(string)` | `{}` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS key ARN if using aws:kms | `string` | `null` | no |
 | <a name="input_prevent_destroy"></a> [prevent\_destroy](#input\_prevent\_destroy) | Prevent accidental destruction of bucket and table | `bool` | `true` | no |
