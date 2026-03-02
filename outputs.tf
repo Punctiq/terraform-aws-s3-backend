@@ -1,25 +1,37 @@
-# Author: Alexandru Raul
-# aws-s3-backend/outputs.tf
-
-# Export the bucket name as an output variable
-output "terraform_state_bucket_name" {
-  description = "Terraform TF state S3 bucket name"
-  value       = aws_s3_bucket.terraform_state_bucket.id
+# ────────────────────────────────────────────────────────────────
+# Outputs – very useful for module consumers
+# ────────────────────────────────────────────────────────────────
+output "s3_bucket_name" {
+  description = "Name of the S3 bucket for Terraform state"
+  value       = aws_s3_bucket.this.bucket
 }
 
-# DynamoDB - Terraform state lock table name
-output "terraform_tfstate_lock_table_name" {
-  description = "DynamoDB table name used for Terraform state locking"
-  value       = aws_dynamodb_table.terraform_tfstate_lock.name
+output "s3_bucket_arn" {
+  description = "ARN of the S3 bucket"
+  value       = aws_s3_bucket.this.arn
 }
 
-# DynamoDB - Terraform state lock table ARN (useful for IAM policies)
-output "terraform_tfstate_lock_table_arn" {
-  description = "DynamoDB table ARN used for Terraform state locking"
-  value       = aws_dynamodb_table.terraform_tfstate_lock.arn
+output "dynamodb_table_name" {
+  description = "Name of the DynamoDB lock table"
+  value       = aws_dynamodb_table.this.name
 }
-# S3 Bucket ARN
-output "terraform_state_bucket_arn" {
-  description = "ARN of the S3 bucket used for Terraform state"
-  value       = aws_s3_bucket.terraform_state_bucket.arn
+
+output "dynamodb_table_arn" {
+  description = "ARN of the DynamoDB lock table"
+  value       = aws_dynamodb_table.this.arn
+}
+
+output "backend_config_example" {
+  description = "Example backend configuration block"
+  value       = <<EOT
+terraform {
+  backend "s3" {
+    bucket         = "${aws_s3_bucket.this.bucket}"
+    key            = "path/to/my/terraform.tfstate"
+    region         = "${var.region}"
+    dynamodb_table = "${aws_dynamodb_table.this.name}"
+    encrypt        = true
+  }
+}
+EOT
 }

@@ -12,7 +12,9 @@ locals {
       "punctiq:deployment:deployment_id"   = var.tag_build_number,
       "punctiq:deployment:deployed_by"     = var.tag_build_author,
       "punctiq:deployment:git_hash"        = var.tag_build_hash,
-      "punctiq:deployment:build_job_name"  = var.tag_build_job_name
+      "punctiq:deployment:build_job_name"  = var.tag_build_job_name,
+      "punctiq:creationdate"               = time_static.creation.rfc3339, # immutable creation timestamp
+      "punctiq:lastupdated"                = formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp()),
     }
   )
 
@@ -24,7 +26,7 @@ locals {
     {
       "punctiq:project"      = coalesce(var.business_cost_tags["punctiq:project"],      "finops-internal"),
       "punctiq:owner"        = coalesce(var.business_cost_tags["punctiq:owner"],        "finops-team@punctiq"),
-      "punctiq:charge_to_id" = coalesce(var.business_cost_tags["punctiq:charge_to_id"], "punctiq-finops-tools")
+      "punctiq:costcenter" = coalesce(var.business_cost_tags["punctiq:costcenter"], "punctiq-finops-tools")
     }
   )
 
@@ -51,14 +53,19 @@ locals {
 
     # Tag-urile individuale – exact cum le aveai în modul
     {
-      "CreationDate"             = formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp()),
-      "Terraform_Module_Version" = var.terraform_module_version,
+      
+      "punctiq:terraform_module_version" = var.terraform_module_version,
 
       # Adiționale light utile (nu afectează Name-ul existent)
-      "ManagedBy"                = "terraform",
-      "Purpose"                  = "terraform-state-backend",
-      "punctiq:service"          = "tf-backend",
-      "punctiq:tagging:version"  = "v2-light-2026"
+      "punctiq:region"                   = var.region,
+      "punctiq:managedby"                = "terraform",
+      "punctiq:purpose"                  = "terraform-state-backend",
+      "punctiq:service"                  = "tf-backend",
+      "punctiq:environment"              = "tooling",
+      "punctiq:department"               = "finops",
+      "punctiq:product"                  = "finops-platform",
+      "punctiq:businessunit"             = "internal",
+      "punctiq:tagging:version"          = "v2-light-2026"
     },
 
     var.extra_tags

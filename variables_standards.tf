@@ -22,3 +22,14 @@ variable "terraform_module_version" {
   description = "Terraform module used to deploy resource"
 }
 
+variable "prevent_destroy" {
+  type        = bool
+  default     = true
+  description = "Prevent accidental destruction of bucket and table"
+}
+
+variable "kms_key_id" {
+  type        = string
+  default     = null
+  description = "KMS key ARN if using aws:kms"
+}

@@ -1,69 +1,63 @@
 # Author: Alexandru Raul
 # aws-s3-backend/main.tf
-# Description: This module creates an S3 bucket and DynamoDB table for Terraform backend state management
+# Description: Creates secure S3 + DynamoDB Terraform remote state backend
+#              with FinOps tagging, protection and best practices (2026)
 
+resource "time_static" "creation" {
+  # Fixed timestamp at initial creation → used in tags
+}
 
-
-#Create the S3 bucket for Terraform TF state file
-resource "aws_s3_bucket" "terraform_state_bucket" {
+# ────────────────────────────────────────────────────────────────
+# S3 Bucket
+# ────────────────────────────────────────────────────────────────
+resource "aws_s3_bucket" "this" {
   bucket = "punctiq-${var.s3_bucket_name}-${var.region}"
 
-  #Prevent bucket deletion
+  tags = local.s3_bucket_tags
+
   lifecycle {
-    prevent_destroy = false
-  }
-  #End
-
- tags = local.s3_bucket_tags
-  #End Backup Tags
-  #End Create the S3 bucket for Terraform TF state file
-}
-
-#We need versioning
-resource "aws_s3_bucket_versioning" "terraform_state_bucket_versioning" {
-  bucket = aws_s3_bucket.terraform_state_bucket.id
-  versioning_configuration {
-    status = var.s3_bucket_versioning
+    prevent_destroy = var.prevent_destroy  # default true in variables.tf
+    ignore_changes  = [tags["punctiq:lastupdated"]]
   }
 }
-#End We need versioning
 
-#Disable public access to S3 bucket
-resource "aws_s3_bucket_public_access_block" "terraform_state_bucket_disable_public_access" {
-  bucket              = aws_s3_bucket.terraform_state_bucket.id
-  block_public_acls   = var.s3_block_public_acls
-  block_public_policy = var.s3_block_public_policy
+resource "aws_s3_bucket_ownership_controls" "this" {
+  bucket = aws_s3_bucket.this.id
+  rule {
+    object_ownership = "BucketOwnerEnforced"
+  }
 }
-#End Disable public access to S3 bucket
 
+resource "aws_s3_bucket_public_access_block" "this" {
+  bucket = aws_s3_bucket.this.id
 
-#Setup encryption on the S3 bucket
-resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_tfstate_bucket_encryption" {
-  bucket = aws_s3_bucket.terraform_state_bucket.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
+  bucket = aws_s3_bucket.this.id
+
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm = var.s3_server_side_encryption
+      sse_algorithm     = var.s3_server_side_encryption
+      kms_master_key_id = var.s3_server_side_encryption == "aws:kms" ? var.kms_key_id : null
     }
   }
 }
-#End Setup encryption on the S3 bucket
 
-#Create DynamoDB table for Terraform TF state file
-resource "aws_dynamodb_table" "terraform_tfstate_lock" {
-  hash_key     = var.dynamo_tbl_hash_key
-  name         = var.dynamo_tbl_name
-  billing_mode = var.dynamo_tbl_billing_mode
+resource "aws_s3_bucket_versioning" "this" {
+  bucket = aws_s3_bucket.this.id
 
-  attribute {
-    name = var.dynamo_tbl_hash_key
-    type = var.dynamo_tbl_attribute_type
-  }
-  point_in_time_recovery {
-    enabled = var.dynamo_tbl_point_in_time_recovery
+  versioning_configuration {
+    status = var.s3_bucket_versioning  # "Enabled" recommended
   }
 
-  tags = local.dynamodb_tags
-  #End Backup Tags
-
+  depends_on = [
+    aws_s3_bucket_ownership_controls.this,
+    aws_s3_bucket_public_access_block.this,
+    aws_s3_bucket_server_side_encryption_configuration.this
+  ]
 }
-#End Create DynamoDB table for Terraform TF state file
