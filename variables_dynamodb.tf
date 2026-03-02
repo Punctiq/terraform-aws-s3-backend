@@ -51,11 +51,6 @@ variable "dynamo_tbl_billing_mode" {
 
 variable "dynamo_tbl_point_in_time_recovery" {
   type        = bool
-  description = "DynamoDB point in time recovery"
+  description = "Enable Point-in-Time Recovery for DynamoDB table"
   default     = true
-
-  validation {
-    condition     = var.dynamo_tbl_point_in_time_recovery == "true" || var.dynamo_tbl_point_in_time_recovery == "false"
-    error_message = "The variable 'dynamo_tbl_point_in_time_recovery' must be one of the following: true or false"
-  }
 }
