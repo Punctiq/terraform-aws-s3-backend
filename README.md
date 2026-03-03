@@ -111,6 +111,7 @@ No modules.
 | [aws_dynamodb_table.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table) | resource |
 | [aws_s3_bucket.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
 | [aws_s3_bucket_ownership_controls.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_ownership_controls) | resource |
+| [aws_s3_bucket_policy.cross_account](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
 | [aws_s3_bucket_public_access_block.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_public_access_block) | resource |
 | [aws_s3_bucket_server_side_encryption_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_server_side_encryption_configuration) | resource |
 | [aws_s3_bucket_versioning.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) | resource |
@@ -122,6 +123,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_business_cost_tags"></a> [business\_cost\_tags](#input\_business\_cost\_tags) | Business / cost allocation tags | `map(string)` | `{}` | no |
 | <a name="input_client_tags"></a> [client\_tags](#input\_client\_tags) | Client/context tags | `map(string)` | `{}` | no |
+| <a name="input_cross_account_principals"></a> [cross\_account\_principals](#input\_cross\_account\_principals) | Lista de ARN-uri (roluri cross-account) care au acces la tfstate | `list(string)` | `[]` | no |
 | <a name="input_deployment_tags_static"></a> [deployment\_tags\_static](#input\_deployment\_tags\_static) | AWS deployment static tags | `map(string)` | n/a | yes |
 | <a name="input_dynamo_tbl_attribute_type"></a> [dynamo\_tbl\_attribute\_type](#input\_dynamo\_tbl\_attribute\_type) | DynamoDB table attribute type | `string` | `"S"` | no |
 | <a name="input_dynamo_tbl_billing_mode"></a> [dynamo\_tbl\_billing\_mode](#input\_dynamo\_tbl\_billing\_mode) | DynamoDB billing mode | `string` | `"PAY_PER_REQUEST"` | no |
