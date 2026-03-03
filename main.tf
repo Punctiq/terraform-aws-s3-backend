@@ -32,9 +32,9 @@ resource "aws_s3_bucket_public_access_block" "this" {
   bucket = aws_s3_bucket.this.id
 
   block_public_acls       = true
-  block_public_policy     = true
+  block_public_policy     = length(var.cross_account_principals) > 0 ? false : true  # ← permite cross-account policy
   ignore_public_acls      = true
-  restrict_public_buckets = true
+  restrict_public_buckets = true  # ← acesta rămâne true, protejează obiectele
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
