@@ -33,3 +33,9 @@ variable "kms_key_id" {
   default     = null
   description = "KMS key ARN if using aws:kms"
 }
+
+variable "cross_account_principals" {
+  description = "Lista de ARN-uri (roluri cross-account) care au acces la tfstate"
+  type        = list(string)
+  default     = []
+}

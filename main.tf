@@ -62,6 +62,43 @@ resource "aws_s3_bucket_versioning" "this" {
   ]
 }
 
+
+# ────────────────────────────────────────────────────────────────
+# Bucket Policy – cross-account access pentru roluri client
+# Se creează doar dacă cross_account_principals este ne-gol
+# ────────────────────────────────────────────────────────────────
+resource "aws_s3_bucket_policy" "cross_account" {
+  count  = length(var.cross_account_principals) > 0 ? 1 : 0
+  bucket = aws_s3_bucket.this.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid    = "AllowCrossAccountTerraformState"
+        Effect = "Allow"
+        Principal = {
+          AWS = var.cross_account_principals
+        }
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:DeleteObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          aws_s3_bucket.this.arn,
+          "${aws_s3_bucket.this.arn}/*"
+        ]
+      }
+    ]
+  })
+
+  depends_on = [
+    aws_s3_bucket_public_access_block.this
+  ]
+}
+
 # ────────────────────────────────────────────────────────────────
 # DynamoDB Table – State Locking
 # ────────────────────────────────────────────────────────────────
